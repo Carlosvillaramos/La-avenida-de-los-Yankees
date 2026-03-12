@@ -1,178 +1,254 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="css/avenida-style.css">
-     <title>La Avenida de los Yankees</title>
-</head>
+    <title>La Avenida de los Yankees | Fan Page</title>
+    <style>
+        :root {
+            --yankee-blue: #003087;
+            --yankee-white: #ffffff;
+            --yankee-black: #000000;
+            --yankee-gray: #f8f9fa;
+            /* Azul oscuro para el borde del logo */
+            --yankee-dark-blue: #001f5c; 
+        }
 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--yankee-white);
+            /* Pinstripes sutiles que no estorban la lectura */
+            background-image: linear-gradient(90deg, transparent 95%, rgba(0, 48, 135, 0.05) 95%);
+            background-size: 35px 100%;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Logo Integrado */
+        header {
+            background-color: var(--yankee-blue);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 6px solid var(--yankee-black);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-container {
+            /* Nuevo fondo azul oscuro para el logo */
+            background-color: var(--yankee-dark-blue); 
+            display: inline-block;
+            padding: 10px;
+            border-radius: 50%; /* Mantener forma circular */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border: 5px solid var(--yankee-white); /* Borde blanco para resaltar */
+        }
+
+        .logo-container img {
+            max-width: 150px; /* Ajustar tamaño del logo */
+            height: auto;
+            display: block;
+        }
+
+        .header-text {
+            margin-top: 15px;
+        }
+
+        .header-text h1 {
+            color: var(--yankee-white);
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        nav {
+            background: var(--yankee-black);
+            padding: 12px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 25px;
+        }
+
+        /* Estilo de la Noticia Principal */
+        .noticia-principal {
+            background-color: var(--yankee-blue);
+            color: white;
+            padding: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .noticia-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 4px solid var(--yankee-black);
+        }
+
+        .noticia-content {
+            padding: 25px;
+        }
+
+        .noticia-content h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--yankee-white);
+            border-left: 5px solid var(--yankee-black);
+            padding-left: 15px;
+        }
+
+        .noticia-content p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .puntos-clave {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .puntos-clave h3 {
+            margin-bottom: 10px;
+            text-decoration: underline;
+        }
+
+        .video-container {
+            margin: 20px 0;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .sidebar {
+            background: var(--yankee-gray);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            height: fit-content;
+        }
+
+        /* Adaptabilidad (Responsive) */
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .logo-container img { max-width: 100px; }
+            .header-text h1 { font-size: 1.6rem; }
+            .noticia-content h2 { font-size: 1.5rem; }
+        }
+
+        footer {
+            background: var(--yankee-black);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
 <body>
 
-    <div class="top-bar">
-        <span>🔥 RESÚMENES EXCLUSIVOS: Aaron Judge celebra el nuevo sistema de retos de MLB</span>
-    </div>
-
-    <header class="main-header">
-        <div class="container">
-            <a href="#" class="logo-text">
-                LA AVENIDA <span class="highlight">DE LOS YANKEES</span>
-            </a>
-           <nav class="nav-links">
-    <a href="index.html">Inicio</a>
-    <a href="#resumenes">Mis Resúmenes</a>
-    <a href="#acerca-de">Acerca de nosotros</a> 
-    <a href="https://www.mlb.com/es/news" target="_blank" class="mlb-link">Noticias MLB.com ⚾</a>
-</nav>
+    <header>
+        <div class="logo-container">
+            <img src="La-Avenida-de-los-Yankees-logo.png" alt="La Avenida de los Yankees Logo">
+        </div>
+        <div class="header-text">
+            <h1>LA AVENIDA DE LOS YANKEES</h1>
+            <p style="margin-top:5px; font-weight: bold; letter-spacing: 1px; color: var(--yankee-gray);">EL CORAZÓN DEL BRONX EN ESPAÑOL</p>
         </div>
     </header>
 
-    <main class="grid-noticias container">
-        <section class="featured-news">
-           <article class="main-card">
-    <img src="Aaron-Judge-bateando.jpg" alt="Aaron Judge usando el sistema ABS">
-    
-    <div class="card-body">
-        <span class="tag">TECNOLOGÍA EN EL DIAMANTE</span>
-        <h2>All Rise: Aaron Judge celebra el nuevo sistema de retos de MLB</h2>
-        
-        <p class="fecha-autor">Por <strong>Carlos Developer</strong> | 20 de febrero de 2026</p>
-        
-        <div class="cuerpo-noticia">
-            <p>
-                En los entrenamientos de primavera en Tampa, <strong>Aaron Judge</strong> ya está sacando provecho de la nueva arma tecnológica de la MLB: el sistema automático de bolas y strikes (ABS). Durante una práctica de bateo reciente, el capitán de los Yankees no dudó en tocarse el casco para pedir un reto tras un ponche cantado; segundos después, la pantalla confirmó que la bola estaba fuera de la zona.
-            </p>
-            
-            <blockquote>
-                "Estoy emocionado por esto. Si siento que puedo pegarle, siento que es un strike. Poder corregir esas llamadas bajas nos ayudará a ganar más juegos." 
-                — Aaron Judge.
-            </blockquote>
-            
-            <p>
-                Históricamente, la estatura de 2.01 metros (6'7") de Judge ha sido un problema para los umpires. Desde 2017, ningún jugador ha sufrido más strikes cantados erróneamente en lanzamientos bajos que él (368 llamadas incorrectas). Este sistema promete nivelar el campo de juego para el capitán.
-            </p>
-            <aside class="infografia-mini">
-    <h3>EL JUEZ CONTRA EL SISTEMA (DESDE 2017)</h3>
-    <div class="stats-grid">
-        <div class="stat-item">
-            <span class="number">638</span>
-            <span class="label">Strikes cantados fuera de zona</span>
-        </div>
-        <div class="stat-item highlight-stat">
-            <span class="number">368</span>
-            <span class="label">Strikes erróneos en la zona baja</span>
-        </div>
-    </div>
-    <p class="source">Fuente: Statcast / MLB.com</p>
-</aside>
-            
-            <p>
-                El mánager Aaron Boone está animando a todo el equipo, incluidos los lanzadores como Gerrit Cole y Carlos Rodón, a ser agresivos con los dos retos que tendrán por juego. Con este cambio, la Avenida de los Yankees espera que esos "strikes" injustos se conviertan en bases por bolas o, mejor aún, en cuadrangulares.
-            </p>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Noticias</a>
+        <a href="#">Spring Training</a>
+        <a href="#">Estadísticas</a>
+    </nav>
 
-           <section class="container spacing">
-    <article class="noticia-yankees">
-        <header class="header-noticia">
-            <span class="categoria">PODCAST: LA AVENIDA DE LOS YANKEES</span>
-            <h1>97 MPH: Gerrit Cole enciende las alarmas de optimismo en el Bronx</h1>
-            <p class="autor">Por <strong>Carlos Villanueva Ramos</strong> | 01 de Marzo, 2026</p>
-        </header>
+    <div class="container">
+        <main>
+            <article class="noticia-principal">
+                <img src="Giancarlo-Stanton-Yankees.jpg" alt="Giancarlo Stanton Yankees" class="noticia-img">
+                
+                <div class="noticia-content">
+                    <h2>Entrenamiento de Primavera: Stanton brilla y el pitcheo domina</h2>
+                    <p>Giancarlo Stanton se destacó con un gran rendimiento conectando dos jonrones, mientras que Cam Schlittler mostró un excelente dominio en el montículo.</p>
 
-        <div class="foto-principal">
-            <img src="Brian-Cashman-y-el-futuro-de-los-Yankees.jpg" alt="Brian Cashman y el futuro de los Yankees">
-            <p class="pie-foto">Brian Cashman confirma: "Este equipo es fuerte y capaz de grandes cosas".</p>
-        </div>
+                    <div class="puntos-clave">
+                        <h3>Puntos Clave:</h3>
+                        <ul>
+                            <li><strong>Giancarlo Stanton:</strong> Conectó dos HR (uno de 2 carreras y otro solitario) contra los Blue Jays. Batea para .364 esta primavera.</li>
+                            <li><strong>Velocidad Pura:</strong> El prospecto Carlos Lagrange alcanzó las 102.6 MPH (165.1 km/h) en el radar.</li>
+                            <li><strong>Cam Schlittler:</strong> Dominante con 6 ponches en 3.2 entradas.</li>
+                        </ul>
+                    </div>
 
-        <div class="contenido-noticia">
-            <p><strong>TAMPA, FL</strong> - El campamento de los Yankees tiene un número mágico: <strong>97 millas por hora</strong>. Ese es el registro que Gerrit Cole ha alcanzado en sus lanzamientos en vivo, a menos de un año de su cirugía Tommy John. El optimismo de Brian Cashman no es solo una sensación, es una realidad respaldada por datos.</p>
-            
-            <blockquote>
-                "Si este es el ambiente en marzo, imaginen el ruido en octubre", comenta Carlos Villanueva en el estreno de su podcast.
-            </blockquote>
+                    <p>El mánager Aaron Boone elogió el enfoque de Stanton en la zona de strike, señalando que se ve totalmente listo para la temporada regular pese a haber lidiado con molestias en los codos anteriormente.</p>
 
-            <h3>El Futuro del Montículo: Lagrange y Rodríguez</h3>
-            <p>La juventud está pidiendo paso a gritos. <strong>Carlos Lagrange</strong> (N° 79 en MLB Pipeline) dejó a todos boquiabiertos al registrar <strong>102 mph</strong>, la velocidad más rápida vista esta primavera. Por su parte, <strong>Elmer Rodríguez</strong> (N° 82) demostró una madurez de veterano con un sinker de 94.9 mph que provocó una doble matanza clave.</p>
+                    <div class="video-container">
+                        <blockquote class="twitter-tweet" data-theme="light">
+                            <p lang="en" dir="ltr">Giancarlo Stanton crushes his second home run of the spring: <a href="https://t.co/LLoF7duNc4">pic.twitter.com/LLoF7duNc4</a></p>
+                            &mdash; Bryan Hoch ⚾️ (@BryanHoch) <a href="https://twitter.com/BryanHoch/status/2031874232070685139">March 11, 2026</a>
+                        </blockquote>
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
 
-            <div class="video-container">
-                <h3 class="title-center">Escucha el Podcast: Análisis del Spring Training</h3>
-                <div class="iframe-responsive">
-                    <iframe width="100%" height="450" 
-                        src="https://www.youtube.com/embed/f-7WnUo_nC8" 
-                        title="La Avenida de los Yankees Podcast" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
+                    <p>Por otro lado, Randal Grichuk sigue peleando un puesto en el roster tras conectar un doblete productor, demostrando que sigue siendo una amenaza contra zurdos.</p>
                 </div>
-            </div>
+            </article>
+        </main>
 
-            <p>Con la llegada de Randal Grichuk y el posible regreso de Cole para mayo o junio, la profundidad del roster es tal que prospectos como Jasson Domínguez y Spencer Jones podrían iniciar en Triple A. Como dice Cashman, "es un buen problema que tener".</p>
-        </div>
-        
-         <div class="foto-principal">
-            <img src="Spencer-Jones-bateando-con-los-Yankees.jpg" alt="Spencer Jones bateando con los Yankees">
-            <p class="pie-foto">"Spencer Jones enviado a Triple-A por los Yankees"</p>
-        </div>
-
-        <div class="contenido-noticia">
-            <p><strong>TAMPA, FL</strong> - Spencer Jones enviado a Triple-A por los Yankees<strong></p>
-            
-            <blockquote>
-                "Esperemos ver pronto a Jones en el primer equipo de los Yankess junto  Jasson Domínguez y que demuestre porque debe estar jugando como titular en los Yankees", comenta Carlos Villanueva.
-            </blockquote>
-
-            <h3>Decisión Estratégica: El Futuro de Jones</h3>
-            <p>Spencer Jones enviado a Triple-A por los Yankees 
-            </div>
-Los Yankees de Nueva York han decidido enviar al joven prospecto Spencer Jones a la liga menor Triple-A debido a la competencia en el equipo. 
-
-Puntos clave: 
-• Jones se presentó al campamento de los Yankees sabiendo que había renovaciones en el equipo que le restaban oportunidades. 
-• Fue enviado a Triple-A Scranton/Wilkes-Barre tras el campamento, en el que había tenido un rendimiento destacado, incluyendo seis hits y tres jonrones. 
-• El gerente general, Brian Cashman, mencionó que otras organizaciones podrían haberle dado una chance en las Grandes Ligas, pero Jones se siente positivo en su rol dentro de los Yankees, enfocado en ayudar al equipo. 
-
-Aunque no logró un puesto en el equipo mayor, Jones está decidido a mejorar y espera tener una oportunidad en el futuro.</p>
-
-            <div class="video-container">
-                <h3 class="title-center">Escucha el Podcast: Análisis del Spring Training</h3>
-                <div class="iframe-responsive">
-                    <iframe width="100%" height="450" 
-                        src="https://www.youtube.com/embed/f-7WnUo_nC8" 
-                        title="La Avenida de los Yankees Podcast" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-
-    </article>
-</section>
-
-        </div>
-        <div class="share-section">
-    <span>¿Te gustó el resumen? ¡Compártelo!</span>
-    <div class="share-buttons">
-        <a href="https://twitter.com/intent/tweet?text=Mira este análisis del Juez en La Avenida de los Yankees" target="_blank" class="btn-share twitter">Twitter (X)</a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=#" target="_blank" class="btn-share facebook">Facebook</a>
-        <a href="https://api.whatsapp.com/send?text=Mira este análisis de Aaron Judge: [Tu URL aquí]" target="_blank" class="btn-share whatsapp">WhatsApp</a>
+        <aside class="sidebar">
+            <h3 style="color: var(--yankee-blue); border-bottom: 2px solid var(--yankee-blue); margin-bottom: 15px;">LO ÚLTIMO</h3>
+            <ul style="list-style: none;">
+                <li style="margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">
+                    <small>11 Marzo, 2026</small><br>
+                    <strong>Stanton suma 3 jonrones en la pretemporada.</strong>
+                </li>
+                <li style="margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 5px;">
+                    <small>10 Marzo, 2026</small><br>
+                    <strong>Lagrange impresiona con su recta de 102 MPH.</strong>
+                </li>
+            </ul>
+        </aside>
     </div>
-</div>
-        <a href="https://www.mlb.com/yankees/news/aaron-judge-yankees-on-abs-challenge-system" target="_blank" class="read-more">Ver noticia original en MLB.com →</a>
-    </div>
-</article>
-</main> 
-<section id="acerca-de" class="about-section">
-  <h2>Acerca de La Avenida de los Yankees</h2>
-  <p>Este proyecto es parte de mi formación como <strong>Desarrollador Full Stack</strong>. 
-     Aquí combino mi pasión por el código con mi amor por el béisbol, demostrando que con 
-     esfuerzo y práctica se pueden crear plataformas profesionales desde cero.</p>
-</section>
 
-<footer>
-  <p>© 2026 La Avenida de los Yankees - Creado por Carlos Developer</p>
-</footer>
+    <footer>
+        <p>&copy; 2026 La Avenida de los Yankees - Fan Page No Oficial</p>
+        <p><small>Diseñado para Computadoras, Tablets y Celulares</small></p>
+    </footer>
 
 </body>
 </html>
