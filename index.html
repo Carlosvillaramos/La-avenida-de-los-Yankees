@@ -8,7 +8,6 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
   <style>
-    /* VARIABLES DE COLOR (Aquí está el Azul Yankees oficial) */
     :root {
       --yankee-blue: #003087;
       --yankee-white: #ffffff;
@@ -18,7 +17,7 @@
       --accent-yellow: #fdb813;
     }
 
-    /* ANIMACIÓN DEL PUNTO DE RADIO */
+    /* ANIMACIÓN RADIO */
     .pulse-dot {
       height: 12px; width: 12px;
       background-color: #ff0000;
@@ -37,10 +36,10 @@
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
       background-color: var(--yankee-white);
-      /* Tus famosas rayas de fondo */
       background-image: linear-gradient(90deg, transparent 95%, rgba(0, 48, 135, 0.05) 95%);
       background-size: 35px 100%;
       color: #333;
+      line-height: 1.6;
     }
 
     header {
@@ -69,7 +68,6 @@
 
     nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; text-transform: uppercase; }
 
-    /* SECCIÓN DE RADIO */
     .radio-bar {
       background: var(--yankee-dark-blue);
       color: white;
@@ -82,31 +80,73 @@
       flex-wrap: wrap;
     }
 
-    /* CONTENEDOR DE NOTICIAS (Donde Netlify pondrá tus artículos) */
     .container {
       max-width: 900px;
       margin: 20px auto;
       padding: 0 15px;
     }
 
+    /* ESTILO DE LAS NOTICIAS */
     .noticia-card {
       background: white;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-      margin-bottom: 30px;
+      margin-bottom: 35px;
       border: 1px solid #ddd;
     }
 
-    .noticia-card img { width: 100%; height: auto; border-bottom: 4px solid var(--yankee-blue); }
-    .noticia-content { padding: 20px; }
-    .noticia-content h2 { color: var(--yankee-blue); margin-bottom: 10px; }
+    .noticia-card img { width: 100%; height: auto; border-bottom: 5px solid var(--yankee-blue); }
+    
+    .noticia-content { padding: 25px; }
+    
+    .noticia-content h2 { 
+      color: var(--yankee-blue); 
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    /* FIRMA Y PAYPAL */
+    .autor-firma {
+      margin-top: 30px;
+      padding: 20px;
+      background: var(--yankee-gray);
+      border-radius: 8px;
+      border-left: 6px solid var(--yankee-blue);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .autor-firma img {
+      width: 75px; height: 75px;
+      border-radius: 50%;
+      border: 3px solid var(--yankee-blue);
+      object-fit: cover;
+    }
+
+    .autor-info .name { font-weight: bold; font-size: 1.2rem; color: var(--yankee-blue); display: block; }
+    .autor-info .title { font-size: 0.9rem; color: #555; font-style: italic; }
+
+    .paypal-button {
+      display: inline-flex;
+      align-items: center;
+      background-color: #ffc439;
+      color: #012169;
+      padding: 8px 15px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.8rem;
+      margin-top: 10px;
+      border: 1px solid #e2b33c;
+    }
 
     footer {
       background: var(--yankee-black);
       color: white;
       text-align: center;
-      padding: 30px;
+      padding: 40px;
       margin-top: 50px;
     }
   </style>
@@ -117,36 +157,70 @@
     <div class="logo-container">
       <img src="La-Avenida-de-los-Yankees-logo.png" alt="Logo">
     </div>
-    <h1>LA AVENIDA DE LOS YANKEES</h1>
-    <p>EL CORAZÓN DEL BRONX EN ESPAÑOL</p>
+    <h1 style="margin-top: 15px; font-size: 2.5rem; font-weight: 900;">LA AVENIDA DE LOS YANKEES</h1>
+    <p style="letter-spacing: 2px;">EL CORAZÓN DEL BRONX EN ESPAÑOL</p>
   </header>
 
   <nav>
     <a href="/">Inicio</a>
-    <a href="/admin">Escribir Noticia</a>
+    <a href="/admin/">Escribir Noticia</a>
+    <a href="https://www.vakeourbano.com/transmision-en-vivo-beisbol-mlb-baseball-online/" target="_blank" style="color: var(--accent-yellow);">⚾ Partidos en Vivo</a>
   </nav>
 
   <div class="radio-bar">
+    <div style="background: var(--yankee-white); text-align: center; padding: 10px; border-bottom: 1px solid #ddd;">
+    <a href="https://www.vakeourbano.com/transmision-en-vivo-beisbol-mlb-baseball-online/" target="_blank" 
+       style="text-decoration: none; color: var(--yankee-blue); font-weight: bold; font-size: 0.9rem;">
+       🔥 ¡HAZ CLIC AQUÍ PARA VER LOS PARTIDOS DE HOY EN VIVO! 🔥
+    </a>
+</div>
     <div style="display: flex; align-items: center; gap: 8px;">
       <span class="pulse-dot"></span>
-      <strong>RADIO EN VIVO</strong>
+      <strong style="letter-spacing: 1px;">RADIO EN VIVO: LA VOZ 23</strong>
     </div>
-    <audio controls style="height: 30px;">
+    <audio controls style="height: 35px;">
       <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
   </div>
 
   <main class="container">
-    <div id="noticias-lista"></div>
+    <div id="noticias-lista">
+        <article class="noticia-card">
+            <div class="noticia-content">
+                <p style="color: #666; font-size: 0.9rem;">Selecciona una noticia para leerla completa...</p>
+                
+                <div class="autor-firma">
+                    <img src="Carlos-Developer-Yankees.png" alt="Carlos Villanueva">
+                    <div class="autor-info">
+                        <span class="name">Carlos José Villanueva Ramos</span>
+                        <span class="title">Director de La Avenida de los Yankees</span>
+                        <br>
+                        <a href="https://www.paypal.me/CarlosJVillanuevaRa" target="_blank" class="paypal-button">
+                             Apoyar el proyecto (PayPal)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
   </main>
 
   <footer>
-    <p>&copy; 2026 La Avenida de los Yankees - Creado por Carlos Villar</p>
+    <p>&copy; 2026 La Avenida de los Yankees. Todos los derechos reservados.</p>
+    <p style="font-size: 0.8rem; margin-top: 10px; color: #777;">Desarrollado por Carlos Developer & Editor</p>
   </footer>
 
   <script>
-    // Script básico para mostrar las noticias (luego lo haremos más pro)
-    // Por ahora esto mantendrá la estructura limpia.
+    // Este script se encargará de mostrar lo que escribas en el panel
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
   </script>
 </body>
 </html>
