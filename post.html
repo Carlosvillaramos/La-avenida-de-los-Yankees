@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticia - La Avenida de los Yankees</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        .post-container { max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
+        .post-header { border-bottom: 4px solid #003087; margin-bottom: 20px; padding-bottom: 10px; }
+        .post-body { font-size: 1.2em; color: #333; }
+        .back-btn { display: inline-block; margin-bottom: 20px; color: #E4002C; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header style="text-align: center; padding: 20px; background-color: #003087; color: white;">
+        <h1>LA AVENIDA DE LOS YANKEES</h1>
+    </header>
+
+    <div class="post-container">
+        <a href="index.html" class="back-btn">← Volver a la portada</a>
+        <div id="post-contenido">
+            <h1 class="post-header" id="post-titulo">Cargando noticia...</h1>
+            <div class="post-body" id="post-texto"></div>
+        </div>
+    </div>
+
+    <script>
+        // Este código "atrapa" la noticia que enviamos desde la portada
+        const params = new URLSearchParams(window.location.search);
+        const file = params.get('file');
+
+        async function cargarNoticiaCompleta() {
+            if (!file) return;
+            const res = await fetch(`https://raw.githubusercontent.com/carlosvillaramos/La-avenida-de-los-Yankees/main/content/blog/${file}`);
+            const markdown = await res.json(); 
+            // Limpiamos el texto (quitamos el encabezado técnico)
+            const contenidoLimpio = markdown.split('---').pop();
+            document.getElementById('post-texto').innerHTML = marked.parse(contenidoLimpio);
+            document.getElementById('post-titulo').innerText = file.substring(11).replace(/-/g, ' ').replace('.md', '').toUpperCase();
+        }
+        cargarNoticiaCompleta();
+    </script>
+</body>
+</html>
