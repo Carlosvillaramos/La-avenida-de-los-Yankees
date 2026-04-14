@@ -33,14 +33,33 @@
 
         async function cargarNoticiaCompleta() {
             if (!file) return;
-            const res = await fetch(`https://raw.githubusercontent.com/carlosvillaramos/La-avenida-de-los-Yankees/main/content/blog/${file}`);
-            const markdown = await res.json(); 
-            // Limpiamos el texto (quitamos el encabezado técnico)
-            const contenidoLimpio = markdown.split('---').pop();
-            document.getElementById('post-texto').innerHTML = marked.parse(contenidoLimpio);
-            document.getElementById('post-titulo').innerText = file.substring(11).replace(/-/g, ' ').replace('.md', '').toUpperCase();
+            
+            try {
+                // Usamos la URL de "raw" que es la que entrega el texto puro sin errores
+                const url = `https://raw.githubusercontent.com/carlosvillaramos/La-avenida-de-los-Yankees/main/content/blog/${file}`;
+                const res = await fetch(url);
+                
+                if (!res.ok) throw new Error("No se pudo conectar con el archivo");
+                
+                const textoMarkdown = await res.text(); // Usamos .text() en lugar de .json()
+
+                // 1. Limpiamos el "Frontmatter" (la parte técnica entre ---)
+                const partes = textoMarkdown.split('---');
+                const contenidoCuerpo = partes.length > 2 ? partes.slice(2).join('---') : textoMarkdown;
+
+                // 2. Convertimos el Markdown a HTML bonito
+                document.getElementById('post-texto').innerHTML = marked.parse(contenidoCuerpo);
+                
+                // 3. Ponemos el título limpio
+                const tituloLimpio = file.substring(11).replace(/-/g, ' ').replace('.md', '').toUpperCase();
+                document.getElementById('post-titulo').innerText = tituloLimpio;
+
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById('post-titulo').innerText = "Error al cargar";
+                document.getElementById('post-texto').innerHTML = "No pudimos traer la noticia del dugout. Revisa la conexión.";
+            }
         }
-        cargarNoticiaCompleta();
     </script>
 </body>
 </html>
