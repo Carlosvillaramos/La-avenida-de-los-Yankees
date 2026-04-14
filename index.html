@@ -223,5 +223,43 @@
       });
     }
   </script>
+<script>
+  async function cargarNoticiasYankees() {
+    const lista = document.getElementById('noticias-lista');
+    
+    try {
+      // Conectamos con la "bodega" de tus noticias en GitHub
+      const res = await fetch('https://api.github.com/repos/carlosvillaramos/La-avenida-de-los-Yankees/contents/content/blog');
+      const archivos = await res.json();
+
+      // Limpiamos la lista antes de cargar
+      lista.innerHTML = '';
+
+      archivos.reverse().forEach(archivo => { // reverse() para que la más nueva salga primero
+        if (archivo.name.endsWith('.md')) {
+          // Quitamos la fecha y los guiones del nombre del archivo para el título
+          const nombreSinExtension = archivo.name.replace('.md', '');
+          const tituloFormateado = nombreSinExtension.split('-').slice(3).join(' ');
+
+          const article = document.createElement('article');
+          article.className = 'noticia-card';
+          article.innerHTML = `
+            <div class="noticia-content">
+              <h3 style="text-transform: capitalize;">${tituloFormateado}</h3>
+              <p>Análisis reciente de la Avenida de los Yankees...</p>
+              <a href="https://rococo-sprite-8b094c.netlify.app/admin/#/collections/blog/entries/${nombreSinExtension}" class="btn-leer">Leer noticia completa</a>
+            </div>
+          `;
+          lista.appendChild(article);
+        }
+      });
+    } catch (error) {
+      console.error("Error cargando el lineup de noticias:", error);
+    }
+  }
+
+  // ¡A jugar! Cargamos las noticias al abrir la página
+  cargarNoticiasYankees();
+</script>
 </body>
 </html>
