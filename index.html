@@ -3,109 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Avenida de los Yankees | Noticias del Bronx</title>
-    <link rel="stylesheet" href="style.css"> <style>
-        /* Unos retoques rápidos para que las noticias se vean geniales */
-        #noticias-lista {
-            display: grid;
-            gap: 20px;
-            padding: 20px;
-        }
-        .noticia-card {
-            border: 2px solid #003087;
-            border-radius: 10px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .btn-leer {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: #003087;
-            color: white !important;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-        .btn-leer:hover {
-            background-color: #E4002C;
-        }
+    <title>La Avenida de los Yankees | Inicio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
+        header { background-color: #003087; color: white; padding: 20px; text-align: center; border-bottom: 5px solid #E4002C; }
+        .container { max-width: 1000px; margin: auto; padding: 20px; }
+        .seccion-especial { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        #noticias-lista { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .noticia-card { background: white; border-left: 5px solid #003087; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .btn-leer { display: inline-block; margin-top: 10px; color: #E4002C; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <header style="text-align: center; padding: 20px; background-color: #003087; color: white;">
-        <h1>LA AVENIDA DE LOS YANKEES</h1>
-        <p>El pulso de los Bombarderos del Bronx</p>
-    </header>
+<header>
+    <h1>LA AVENIDA DE LOS YANKEES</h1>
+    <p>Noticias, Radio y Juegos en Vivo</p>
+</header>
 
-    <main>
-        <section id="noticias-seccion">
-            <h2 style="text-align: center; margin-top: 30px;">Últimas Noticias</h2>
-            
-            <div id="noticias-lista">
-                <p style="text-align: center;">Calentando el brazo... (Cargando noticias)</p>
-            </div>
+<div class="container">
+    <section class="seccion-especial">
+        <h2>📻 Radio & Juegos en Vivo</h2>
+        <p>Aquí puedes reinsertar tus códigos de radio y marcadores de la MLB.</p>
         </section>
-    </main>
 
-    <script>
-      async function cargarNoticiasYankees() {
+    <section>
+        <h2>Últimas del Bronx</h2>
+        <div id="noticias-lista">
+            <p>Cargando el lineup de noticias...</p>
+        </div>
+    </section>
+</div>
+
+<script>
+    async function cargarNoticias() {
         const lista = document.getElementById('noticias-lista');
-        
         try {
-          // 1. Conectamos con tu repositorio en GitHub
-          const res = await fetch('https://api.github.com/repos/carlosvillaramos/La-avenida-de-los-Yankees/contents/content/blog');
-          
-          if (!res.ok) throw new Error("No se pudo conectar con el servidor de noticias");
-          
-          const archivos = await res.json();
+            const res = await fetch('https://api.github.com/repos/carlosvillaramos/La-avenida-de-los-Yankees/contents/content/blog');
+            const archivos = await res.json();
+            lista.innerHTML = '';
 
-          // Limpiamos el mensaje de "Cargando"
-          lista.innerHTML = '';
-
-          // 2. Procesamos cada archivo (los más nuevos primero)
-          archivos.reverse().forEach(archivo => {
-            if (archivo.name.endsWith('.md')) {
-              // Formateamos el título: quitamos fecha y guiones
-              const nombreSinExtension = archivo.name.replace('.md', '');
-              // Quitamos los primeros 11 caracteres (la fecha YYYY-MM-DD-)
-              const tituloLimpio = nombreSinExtension.substring(11).replace(/-/g, ' ');
-
-              const article = document.createElement('article');
-              article.className = 'noticia-card';
-              article.innerHTML = `
-                <div class="noticia-content">
-                  <h3 style="text-transform: capitalize; color: #003087; margin-top: 0;">${tituloLimpio}</h3>
-                  <p>Análisis exclusivo y noticias recientes directamente desde el diamante.</p>
-                  <a href="post.html?file=${archivo.name}" class="btn-leer">
-                     Leer noticia completa
-                  </a>
-                </div>
-              `;
-              lista.appendChild(article);
-            }
-          });
-
-          if (lista.innerHTML === '') {
-            lista.innerHTML = '<p style="text-align: center;">Aún no hay noticias publicadas. ¡Vuelve pronto!</p>';
-          }
-
-        } catch (error) {
-          console.error("Error en el lineup:", error);
-          lista.innerHTML = '<p style="text-align: center; color: red;">Error al cargar las noticias. Revisa la conexión.</p>';
+            archivos.reverse().forEach(archivo => {
+                if (archivo.name.endsWith('.md')) {
+                    const titulo = archivo.name.substring(11).replace(/-/g, ' ').replace('.md', '');
+                    const card = document.createElement('div');
+                    card.className = 'noticia-card';
+                    card.innerHTML = `
+                        <h3 style="text-transform: capitalize;">${titulo}</h3>
+                        <p>Análisis reciente de los Bombarderos...</p>
+                        <a href="post.html?file=${encodeURIComponent(archivo.name)}" class="btn-leer">Leer noticia completa →</a>
+                    `;
+                    lista.appendChild(card);
+                }
+            });
+        } catch (e) {
+            lista.innerHTML = '<p>Error al cargar noticias.</p>';
         }
-      }
-
-      // ¡Play ball! Ejecutamos la función
-      cargarNoticiasYankees();
-    </script>
-
-    <footer style="text-align: center; padding: 20px; margin-top: 50px; font-size: 0.8em; color: #666;">
-        <p>&copy; 2026 La Avenida de los Yankees - Desarrollado por Carlos Villa Ramos</p>
-    </footer>
+    }
+    cargarNoticias();
+</script>
 
 </body>
 </html>

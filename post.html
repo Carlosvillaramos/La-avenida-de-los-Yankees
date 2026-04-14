@@ -3,63 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticia - La Avenida de los Yankees</title>
+    <title>Noticia | La Avenida de los Yankees</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        .post-container { max-width: 800px; margin: 40px auto; padding: 20px; line-height: 1.6; }
-        .post-header { border-bottom: 4px solid #003087; margin-bottom: 20px; padding-bottom: 10px; }
-        .post-body { font-size: 1.2em; color: #333; }
-        .back-btn { display: inline-block; margin-bottom: 20px; color: #E4002C; text-decoration: none; font-weight: bold; }
+        body { font-family: 'Georgia', serif; line-height: 1.8; color: #333; background: #f9f9f9; }
+        .nav-post { background: #003087; padding: 10px; text-align: center; }
+        .nav-post a { color: white; text-decoration: none; font-weight: bold; }
+        .content-area { max-width: 700px; margin: 40px auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        h1 { color: #003087; border-bottom: 3px solid #E4002C; padding-bottom: 10px; text-transform: uppercase; }
+        #post-texto img { max-width: 100%; height: auto; border-radius: 5px; }
     </style>
 </head>
 <body>
-    <header style="text-align: center; padding: 20px; background-color: #003087; color: white;">
-        <h1>LA AVENIDA DE LOS YANKEES</h1>
-    </header>
 
-    <div class="post-container">
-        <a href="index.html" class="back-btn">← Volver a la portada</a>
-        <div id="post-contenido">
-            <h1 class="post-header" id="post-titulo">Cargando noticia...</h1>
-            <div class="post-body" id="post-texto"></div>
-        </div>
+<div class="nav-post">
+    <a href="index.html">← VOLVER A LA AVENIDA</a>
+</div>
+
+<div class="content-area">
+    <h1 id="post-titulo">Cargando noticia...</h1>
+    <div id="post-texto">
+        <p>Buscando en los archivos del Bronx...</p>
     </div>
+</div>
 
-    <script>
-        // Este código "atrapa" la noticia que enviamos desde la portada
-        const params = new URLSearchParams(window.location.search);
-        const file = params.get('file');
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const fileName = params.get('file');
 
-        async function cargarNoticiaCompleta() {
-            if (!file) return;
+    async function cargarContenido() {
+        if (!fileName) return;
+        try {
+            const url = `https://raw.githubusercontent.com/carlosvillaramos/La-avenida-de-los-Yankees/main/content/blog/${fileName}`;
+            const res = await fetch(url);
+            const textoRaw = await res.text();
+
+            // Limpiar metadatos del CMS (frontmatter)
+            const contenidoMarkdown = textoRaw.split('---').pop();
             
-            try {
-                // Usamos la URL de "raw" que es la que entrega el texto puro sin errores
-                const url = `https://raw.githubusercontent.com/carlosvillaramos/La-avenida-de-los-Yankees/main/content/blog/${file}`;
-                const res = await fetch(url);
-                
-                if (!res.ok) throw new Error("No se pudo conectar con el archivo");
-                
-                const textoMarkdown = await res.text(); // Usamos .text() en lugar de .json()
-
-                // 1. Limpiamos el "Frontmatter" (la parte técnica entre ---)
-                const partes = textoMarkdown.split('---');
-                const contenidoCuerpo = partes.length > 2 ? partes.slice(2).join('---') : textoMarkdown;
-
-                // 2. Convertimos el Markdown a HTML bonito
-                document.getElementById('post-texto').innerHTML = marked.parse(contenidoCuerpo);
-                
-                // 3. Ponemos el título limpio
-                const tituloLimpio = file.substring(11).replace(/-/g, ' ').replace('.md', '').toUpperCase();
-                document.getElementById('post-titulo').innerText = tituloLimpio;
-
-            } catch (error) {
-                console.error("Error:", error);
-                document.getElementById('post-titulo').innerText = "Error al cargar";
-                document.getElementById('post-texto').innerHTML = "No pudimos traer la noticia del dugout. Revisa la conexión.";
-            }
+            document.getElementById('post-titulo').innerText = fileName.substring(11).replace(/-/g, ' ').replace('.md', '');
+            document.getElementById('post-texto').innerHTML = marked.parse(contenidoMarkdown);
+        } catch (e) {
+            document.getElementById('post-titulo').innerText = "Error";
+            document.getElementById('post-texto').innerHTML = "No se pudo cargar la noticia.";
         }
-    </script>
+    }
+    cargarContenido();
+</script>
+
 </body>
 </html>
