@@ -3,91 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Noticias, radio y juegos en vivo de los New York Yankees. Escrito por Carlos Villanueva.">
+    <meta name="description" content="Noticias, análisis y pasión por los New York Yankees desde Costa Rica.">
     <meta name="author" content="Carlos José Villanueva Ramos">
-    <meta name="keywords" content="Yankees, MLB, Béisbol, Noticias Yankees, Radio Yankees">
+    <meta name="keywords" content="Yankees, MLB, Béisbol, Noticias Yankees, Bronx">
+    <meta property="og:title" content="La Avenida de los Yankees">
+    <meta property="og:description" content="Noticias y análisis de los Mulos del Bronx desde Costa Rica.">
     <title>La Avenida de los Yankees | Inicio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; }
-        header { background-color: #003087; color: white; padding: 20px; text-align: center; border-bottom: 5px solid #E4002C; }
-        .container { max-width: 1000px; margin: auto; padding: 20px; }
-        .seccion-especial { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        #noticias-lista { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .noticia-card { background: white; border-left: 5px solid #003087; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .btn-leer { display: inline-block; margin-top: 10px; color: #E4002C; text-decoration: none; font-weight: bold; }
-    </style>
 </head>
 <body>
 
-<header>
-    <h1>LA AVENIDA DE LOS YANKEES</h1>
-    <p>Noticias, Radio y Juegos en Vivo</p>
-
-    <img src="La-Avenida-de-los-Yankees-logo.png" alt="La Avenida de los Yankees logo">
-</header>
-<div class="container">
-    <section class="seccion-especial">
-        <h2>⚾ Juegos en Vivo</h2>
-        <a href="https://www.vakeourbano.com/transmision-en-vivo-beisbol-mlb-baseball-online/" target="_blank">Partidos en Vivo: Haz clic aquí y disfruta de la MLB</a>
-    </section>
-
-    <section class="seccion-especial">
-        <h2>📻 Radio en Vivo</h2>
-        <a href="https://lavoz23.radio12345.com/" target="_blank">Radio en Vivo: Haz clic aquí para escuchar</a>
-    </section>
-
-    <section class="seccion-especial" style="text-align: center; border-top: 4px solid #E4002C;">
-        <img src="https://github.com/carlosvillaramos.png" alt="Carlos José Villanueva Ramos" style="width: 100px; border-radius: 50%; border: 3px solid #003087; margin-bottom: 10px;">
-        <p style="font-weight: bold; font-size: 1.1em; margin: 5px 0;">Escrito por Carlos José Villanueva Ramos</p>
-        
-        <div style="margin-top: 15px;">
-            <p style="font-size: 0.9em; color: #666;">¿Te gusta mi contenido? Apoya el proyecto:</p>
-            <a href="https://www.paypal.com/paypalme/CarlosJVillanuevaRa" target="_blank" style="display: inline-block; background: #0070ba; color: white; padding: 10px 20px; text-decoration: none; border-radius: 25px; font-weight: bold;">
-                ☕ Donar vía PayPal
-            </a>
-        </div>
-    </section>
-
-    <section>
-        <h2>Últimas del Bronx</h2>
-        <div id="noticias-lista">
-            <p>Cargando el lineup de noticias...</p>
-        </div>
-    </section>
-</div>
-
-<script>
-    async function cargarNoticias() {
-        const lista = document.getElementById('noticias-lista');
-        try {
-            const res = await fetch('https://api.github.com/repos/carlosvillaramos/La-avenida-de-los-Yankees/contents/content/blog');
-            const archivos = await res.json();
-            lista.innerHTML = '';
-
-            archivos.reverse().forEach(archivo => {
-                if (archivo.name.endsWith('.md')) {
-                    const titulo = archivo.name.substring(11).replace(/-/g, ' ').replace('.md', '');
-                    const card = document.createElement('div');
-                    card.className = 'noticia-card';
-                    card.innerHTML = `
-                        <h3 style="text-transform: capitalize;">${titulo}</h3>
-                        <p>Análisis reciente de los Bombarderos...</p>
-                        <a href="post.html?file=${encodeURIComponent(archivo.name)}" class="btn-leer">Leer noticia completa →</a>
-                    `;
-                    lista.appendChild(card);
-                }
-            });
-        } catch (e) {
-            lista.innerHTML = '<p>Error al cargar noticias.</p>';
-        }
-    }
-    cargarNoticias();
-</script>
-<footer>
+    <header>
         <div class="container">
-        <p>© 2026 | Desarrollado por Carlos Developer | Cartago, Costa Rica</p>
+            <p class="logo">⚾ La Avenida de los Yankees</p>
+            <nav>
+                <a href="#blog">Blog</a>
+                <a href="#acerca">Acerca de</a>
+                <a href="#contacto">Contacto</a>
+                <a href="privacidad.html">Privacidad</a>
+            </nav>
         </div>
-     </footer> 
+    </header>
+
+    <section id="hero">
+        <div class="hero-overlay">
+            <div class="container">
+                <h1>La Avenida de los <span class="acento">Yankees</span></h1>
+                <p class="subtitulo">Noticias, análisis y pasión por los Mulos del Bronx ⚾</p>
+                <p class="subtitulo">Desde Costa Rica para el mundo</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog">
+    <div class="container">
+        <h2>📰 Últimas del Bronx</h2>
+        <div class="blog-grid">
+
+            <!-- NOTICIA 1 -->
+            <article class="blog-card">
+                <img src="https://e2.365dm.com/22/10/2048x1152/skysports-aaron-judge-new-york-yankees_5920643.jpg" 
+                     alt="Yankees vs Angelinos" class="noticia-imagen">
+                <div class="autor">
+                    <img src="Carlos-Developer-Yankees.png" alt="Carlos Villanueva" class="autor-foto">
+                    <div>
+                        <p class="autor-nombre">Carlos José Villanueva Ramos</p>
+                        <p class="autor-fecha">📅 14 de Abril 2026</p>
+                    </div>
+                </div>
+                <h3>Yankees vencen a los Angelinos 11-10 con brillante actuación de Judge</h3>
+                <p>Los Yankees de Nueva York lograron una emocionante victoria sobre los Angelinos por 11-10, con destacadas actuaciones de Aaron Judge y Trent Grisham. Después de perder cinco juegos consecutivos, Judge envió un mensaje a su equipo sobre la necesidad de simplificar el juego.</p>
+                <p>En su primer turno al bate, Judge conectó un jonrón de dos carreras que recorrió 456 pies — el más potente de la temporada. Trent Grisham también brilló con dos jonrones clave que sellaron la victoria.</p>
+                <p>Judge se convirtió en el segundo jugador con más partidos de múltiples jonrones en la historia de los Yankees, solo detrás de Babe Ruth. ⚾</p>
+                <a href="#" class="btn-leer">Leer más →</a>
+            </article>
+
+            <!-- NOTICIA 2 -->
+            <article class="blog-card">
+                <img src="https://www.beisbolmlb.com/wp-content/uploads/image-2019-03-19-12.jpg" 
+                     alt="Análisis racha negativa Yankees" class="noticia-imagen">
+                <div class="autor">
+                    <img src="Carlos-Developer-Yankees.png" alt="Carlos Villanueva" class="autor-foto">
+                    <div>
+                        <p class="autor-nombre">Carlos José Villanueva Ramos</p>
+                        <p class="autor-fecha">📅 13 de Abril 2026</p>
+                    </div>
+                </div>
+                <h3>Análisis: La racha negativa de los Yankees y la voz de Judge</h3>
+                <p>Aaron Judge, capitán de los Yankees, ha observado que el equipo está luchando con su ofensiva, lo que los llevó a una racha de cinco derrotas consecutivas. Judge sugiere que es hora de simplificar el enfoque en el bateo.</p>
+                <p>Los Yankees perdieron 5-4 ante los Rays, completando una barrida de tres juegos. El equipo tiene un récord de 0-6 en juegos decididos por una carrera, lo que refleja su dificultad para cerrar partidos.</p>
+                <p>A pesar de la mala racha, Judge y el manager Aaron Boone siguen confiados en que el equipo puede cambiar el rumbo. Aún quedan muchos juegos en la temporada. ⚾💪</p>
+                <a href="#" class="btn-leer">Leer más →</a>
+            </article>
+
+        </div>
+    </div>
+</section>
+    <section id="acerca">
+        <div class="container">
+            <h2>🧢 Acerca de</h2>
+            <div class="acerca-content">
+                <img src="Carlos-Developer-Yankees.png" alt="Carlos Villanueva" class="acerca-foto">
+                <div class="acerca-texto">
+                    <p>Soy <strong>Carlos José Villanueva Ramos</strong>, un fanático de los Yankees de Nueva York desde muy pequeño. Siempre me ha apasionado los Yankees y el béisbol, y desde mi tierra <strong>Costa Rica</strong> quiero comentar siempre acerca de los Mulos del Bronx — ¡el campeón eterno!</p>
+                    <p>Este espacio nació del amor por el béisbol y las ganas de compartir cada jugada, cada noticia y cada momento histórico de la franquicia más ganadora de la historia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="redes">
+        <div class="container">
+            <h2>📱 Síguenos en Redes</h2>
+            <div class="redes-grid">
+                <a href="https://www.facebook.com/profile.php?id=61586443767348" target="_blank" class="btn btn-facebook">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a>
+                <a href="https://youtube.com/@laavenidadelosyankees-s7u" target="_blank" class="btn btn-youtube">
+                    <i class="fab fa-youtube"></i> YouTube
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="container">
+            <h2>✉️ Contacto</h2>
+            <p>¿Tenés alguna sugerencia, noticia o querés colaborar? ¡Escribime!</p>
+            <div class="redes-grid">
+                <a href="https://www.facebook.com/profile.php?id=61586443767348" target="_blank" class="btn btn-facebook">
+                    <i class="fab fa-facebook"></i> Escribime en Facebook
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 | La Avenida de los Yankees | Desarrollado por Carlos Developer | Cartago, Costa Rica</p>
+        </div>
+    </footer>
+
 </body>
 </html>

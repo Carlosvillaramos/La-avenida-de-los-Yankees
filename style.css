@@ -1,0 +1,384 @@
+:root {
+    --azul-yankees: #003087;
+    --rojo-yankees: #E4002C;
+    --negro: #1a1a1a;
+    --blanco: #ffffff;
+    --gris-claro: #f4f4f4;
+    --gris-texto: #555;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--gris-claro);
+    color: var(--negro);
+    overflow-x: hidden;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    color: var(--azul-yankees);
+    text-align: center;
+}
+
+h3 {
+    color: var(--azul-yankees);
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.05em;
+    line-height: 1.7;
+    color: var(--gris-texto);
+}
+
+/* ========== CONTAINER ========== */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ========== HEADER ========== */
+header {
+    background-color: var(--azul-yankees);
+    border-bottom: 4px solid var(--rojo-yankees);
+    width: 100%;
+}
+
+header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+header .logo {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--blanco);
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+header nav {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+}
+
+header a {
+    text-decoration: none;
+    color: var(--blanco);
+    font-weight: bold;
+    padding: 5px 12px;
+    transition: 0.3s;
+}
+
+header a:hover {
+    color: var(--rojo-yankees);
+}
+
+/* ========== HERO ========== */
+#hero {
+    background-image:
+        linear-gradient(
+            rgba(0, 48, 135, 0.75),
+            rgba(0, 0, 0, 0.85)
+        ),
+        url("images.jpg");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-overlay {
+    width: 100%;
+    text-align: center;
+}
+
+#hero h1 {
+    font-size: 2.2em;
+    color: var(--blanco);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.acento {
+    color: var(--rojo-yankees);
+}
+
+.subtitulo {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+/* ========== BLOG ========== */
+#blog {
+    background-color: var(--blanco);
+    padding: 20px 0;
+}
+
+.blog-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.blog-card {
+    background: var(--gris-claro);
+    border-left: 5px solid var(--azul-yankees);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.blog-card:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.blog-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.blog-card p {
+    margin-bottom: 15px;
+}
+
+.autor {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.autor-foto {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--azul-yankees);
+}
+
+.autor-nombre {
+    font-weight: bold;
+    color: var(--azul-yankees);
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.autor-fecha {
+    font-size: 0.8em;
+    color: #999;
+    margin: 0;
+}
+
+.btn-leer {
+    display: inline-block;
+    color: var(--rojo-yankees);
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-leer:hover {
+    color: var(--azul-yankees);
+}
+
+/* ========== ACERCA DE ========== */
+#acerca {
+    background-color: var(--gris-claro);
+    padding: 20px 0;
+}
+
+.acerca-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    text-align: center;
+}
+
+.acerca-foto {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--azul-yankees);
+    box-shadow: 0 0 20px rgba(0,48,135,0.2);
+}
+
+.acerca-texto p {
+    margin-bottom: 15px;
+}
+
+/* ========== REDES ========== */
+#redes {
+    background-color: var(--azul-yankees);
+    padding: 20px 0;
+}
+
+#redes h2 {
+    color: var(--blanco);
+}
+
+.redes-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ========== CONTACTO ========== */
+#contacto {
+    background-color: var(--blanco);
+    padding: 20px 0;
+    text-align: center;
+}
+
+#contacto p {
+    margin-bottom: 20px;
+}
+
+/* ========== BOTONES ========== */
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-decoration: none;
+    padding: 16px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s ease;
+}
+
+.btn-facebook {
+    background-color: #1877f2;
+    color: white;
+}
+
+.btn-youtube {
+    background-color: #ff0000;
+    color: white;
+}
+
+.btn-facebook:hover,
+.btn-youtube:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+/* ========== PRIVACIDAD ========== */
+#privacidad .privacidad-texto {
+    background: var(--blanco);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+#privacidad h3 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.fecha-politica {
+    margin-top: 25px;
+    font-size: 0.85em;
+    color: #999;
+}
+
+/* ========== FOOTER ========== */
+footer {
+    background-color: var(--negro);
+    border-top: 4px solid var(--rojo-yankees);
+    text-align: center;
+}
+
+footer p {
+    color: #aaa;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (min-width: 720px) {
+    header {
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+    }
+
+    header .container {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 30px;
+    }
+
+    header .logo {
+        margin-bottom: 0;
+    }
+
+    header nav {
+        flex-direction: row;
+        gap: 0;
+    }
+
+    #hero {
+        padding-top: 70px;
+        min-height: 70vh;
+    }
+
+    #hero h1 {
+        font-size: 3.5em;
+    }
+
+    .blog-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .acerca-content {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .acerca-foto {
+        min-width: 150px;
+    }
+
+    .redes-grid {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+.noticia-imagen {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
