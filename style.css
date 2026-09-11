@@ -374,8 +374,7 @@ footer p {
         justify-content: center;
     }
 }
-
-.noticia-imagen {
+.George-Lombard-Jr-jugador-de-los-Yankees-de-Nueva-York{
     width: 100%;
     height: 200px;
     object-fit: cover;
@@ -383,7 +382,7 @@ footer p {
     margin-bottom: 15px;
 }
 
-.Aaron-Judge-espera-salir-de-la-lesion {
+.heliot-ramos-new-york-yankees {
     max-width: 120px;
     height: auto;
     display: block;
@@ -391,7 +390,7 @@ footer p {
     border-radius: 6px;
 }
 
-.Aaron-Judge-jugador-de-los-Yankees-de-Nueva-York{
+.Gerrit-Cole-jugador-de-los-Yankees-de-Nueva-York {
     max-width: 120px;
     height: auto;
     display: block;
@@ -407,24 +406,7 @@ footer p {
     border-radius: 6px;
 }
 
-.George-Lombard-Jr-jugador-de-los-Yankees-de-Nueva-York {
-    max-width: 120px;
-    height: auto;
-    display: block;
-    margin: 15px 0;
-    border-radius: 6px;
-
-    }
-
-.Gerrit-Cole-jugador-de-los-Yankees-de-Nueva-York {
-    max-width: 120px;
-    height: auto;
-    display: block;
-    margin: 15px 0;
-    border-radius: 6px;
-}
-
-.El-Boricua-Heliot-Ramos-celebrando-su-primer-homer-run-con-los-Yankees {
+.noticia-img-chica {
     max-width: 120px;
     height: auto;
     display: block;
